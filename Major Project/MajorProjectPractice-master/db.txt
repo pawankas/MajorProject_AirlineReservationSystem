@@ -1,0 +1,19 @@
+CREATE TABLE `ars`.`flight` (
+  `flightId` INT NOT NULL AUTO_INCREMENT,
+  `operatorName` VARCHAR(45) NOT NULL,
+  `departureCity` VARCHAR(45) NOT NULL,
+  `arivalCity` VARCHAR(45) NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `seatingCapacity` INT NOT NULL,
+  PRIMARY KEY (`flightId`),
+  UNIQUE INDEX `flightId_UNIQUE` (`flightId` ASC) VISIBLE,
+  UNIQUE INDEX `operatorName_UNIQUE
+` (`operatorName` ASC) VISIBLE);
+
+
+
+
+------------------------------------------------------------------------------------------
+
+
+CREATE SCHEMA `airlinereservationsystem` ;

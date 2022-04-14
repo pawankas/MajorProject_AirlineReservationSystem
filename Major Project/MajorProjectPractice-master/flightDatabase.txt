@@ -1,0 +1,84 @@
+
+FLIGHT TABLE
+
+flightId(PK)
+flightName
+airlineId(FK)
+departureDate
+departureTime
+arivalDate
+arivalTime
+from
+to
+flight works for whole days or selected dates
+economy/bussiness/premium
+seats for each class
+price for each class
+price for adul/child/senior
+return or oneway
+no of stops
+refundable or not
+
+-----------------------------------------------------------------------------------------
+
+
+AirLine(one airline can have many flight)
+
+airlineId(PK)
+airlineName
+airLineNumber
+
+
+-----------------------------------------------------------------------------------------
+
+booking(one flight can have many booking)
+
+bookingId(PK)
+passengerId(FK)
+flightId(FK)
+from
+to
+fare
+currency
+complaint
+feedback
+promocodeId
+
+-----------------------------------------------------------------------------------------
+
+
+Passenger()
+flightId(one flight many pass)
+passengerId(PK)
+firstName
+lastName
+emailId
+category of passenger(adult,child,senior)
+gender
+contactNumber
+
+
+-----------------------------------------------------------------------------------------
+
+promocode
+
+promocodeId
+name
+discount
+
+-----------------------------------------------------------------------------------------
+
+
+user
+
+userId
+firstName
+lastName
+emailId
+Gender
+contactNo
+
+
+
+
+
