@@ -1,14 +1,19 @@
+import { FlightsComponent } from './FlightComponents/flights/flights.component';
+
+import { RegisterComponent } from './myComponents/register/register.component';
+import { LoginComponent } from './myComponents/Login/Login.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { HomeComponentComponent } from './myComponents/home-component/home-component.component';
+
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponentComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'flights', component: FlightsComponent },
+
 ];
 
 @NgModule({

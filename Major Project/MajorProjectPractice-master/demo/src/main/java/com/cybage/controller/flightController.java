@@ -1,8 +1,11 @@
 package com.cybage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,34 +19,49 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cybage.model.Flight;
 import com.cybage.service.FlightService;
 
-@RestController
 @CrossOrigin("*")
+@RestController
 @RequestMapping("/flight")
 public class flightController {
 
 	@Autowired
 	FlightService flightService;
-
+	
+	@GetMapping("/{flightId}")
+	public ResponseEntity<?> findById(@PathVariable("flightId") int flightId) {
+		Flight flight = flightService.findById(flightId);
+		Map<String, Object> map = new HashMap<>();
+		map.put("status", "success");
+		map.put("data", flight);
+		return ResponseEntity.ok(map);
+	}
+	
 	@PostMapping("/add")
-	private Flight addFlight(@RequestBody Flight flight) {
+	public ResponseEntity<Flight> save(@RequestBody Flight flight) {
 		flight = flightService.addFlight(flight);
-		return flight;
+		return ResponseEntity.ok(flight);
+		
 	}
-
+	
 	@GetMapping("/all")
-	private List<Flight> getAllfFlights() {
-		return flightService.getAllFlights();
-	}
+	public ResponseEntity<List<Flight>> findAll() {
+		List<Flight> list = flightService.getAllFlights();
+		return ResponseEntity.ok(list);
+		
+	}	
 
-	@PutMapping("/update")
-	private Flight update(@RequestBody Flight flight) {
-		flightService.addFlight(flight);
-		return flight;
+	
+	@PutMapping("update/{flightId}")
+	public ResponseEntity<Flight> update(@PathVariable("flightId") int flightId, @RequestBody Flight flight) {
+		flight.setFlightId(flightId);
+		Flight modflight = flightService.updateFlight(flight);
+		return ResponseEntity.ok(modflight);
 	}
+	
 
-	@DeleteMapping("/deleteflight/{flightId}")
-	private void deleteBook(@PathVariable("flightId") int flightId, Flight flight) {
-		flightService.delete(flightId);
-		System.out.println("Flight Deleted Successfully!");
+	@DeleteMapping("deleteflight/{flightId}")
+	public ResponseEntity<Boolean> delete(@PathVariable("flightId") int flightId) {
+		boolean success = flightService.deleteById(flightId);
+		return ResponseEntity.ok(success);
 	}
 }
